@@ -1,9 +1,15 @@
 [build]
-  base = "client"
-  publish = "dist"
-  command = "npm run build"
+  publish = "build"          # React/CRA
+  # publish = "dist"         # Vite — uncomment this and remove the line above if you use Vite
 
+# Proxy all API calls to Render
 [[redirects]]
-from="/*"
-to="/index.html"
-status=200
+  from = "/api/*"
+  to = "https://hanshitha-frontend.onrender.com/api/:splat"
+  status = 200
+
+# SPA fallback so deep links work on Netlify
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
